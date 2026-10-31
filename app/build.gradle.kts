@@ -5,11 +5,6 @@ plugins {
     id("com.google.devtools.ksp")
 }
 
-// Signing: the GitHub workflow decodes your keystore and sets these variables.
-// Without them the release APK falls back to the debug key (fine for a first test,
-// but that key changes between machines, so such an APK cannot be updated in place).
-val keystorePath: String? = System.getenv("KEYSTORE_PATH")
-
 android {
     namespace = "com.allen.restocker"
     compileSdk = 34
@@ -18,30 +13,32 @@ android {
         applicationId = "com.allen.restocker"
         minSdk = 24
         targetSdk = 34
-        val run = System.getenv("GITHUB_RUN_NUMBER")?.toIntOrNull() ?: 1
-        versionCode = run
-        versionName = "1.0.$run"
+        // versionCode must only ever go up, or Android refuses the update. Minutes since 1970
+        // always increases, even if the repo or the workflow is ever recreated.
+        versionCode = (System.currentTimeMillis() / 60000L).toInt()
+        versionName = "1.0." + (System.getenv("GITHUB_RUN_NUMBER") ?: "dev")
     }
 
+    // One fixed key (app/restocker.jks, committed on purpose). Every build, on any machine,
+    // is signed with it, so each new APK installs over the previous one as a normal update.
+    // Never replace this file after you have installed the app, or updates will be refused.
     signingConfigs {
-        if (keystorePath != null) {
-            create("release") {
-                storeFile = file(keystorePath)
-                storePassword = System.getenv("KEYSTORE_PASSWORD")
-                keyAlias = System.getenv("KEY_ALIAS")
-                keyPassword = System.getenv("KEY_PASSWORD")
-            }
+        create("release") {
+            storeFile = file("restocker.jks")
+            storeType = "pkcs12"
+            storePassword = "restocker-fp"
+            keyAlias = "restocker"
+            keyPassword = "restocker-fp"
         }
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
-            signingConfig = if (keystorePath != null) {
-                signingConfigs.getByName("release")
-            } else {
-                signingConfigs.getByName("debug")
-            }
+            signingConfig = signingConfigs.getByName("release")
+        }
+        debug {
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 

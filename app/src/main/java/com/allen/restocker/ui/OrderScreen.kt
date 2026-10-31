@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class, ExperimentalLayoutApi::class)
 
 package com.allen.restocker.ui
 
@@ -14,6 +14,8 @@ import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -31,6 +33,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.selection.SelectionContainer
@@ -58,6 +61,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -198,13 +202,20 @@ fun OrderScreen(vm: MainViewModel, snackbarHost: SnackbarHostState) {
                             text = "\u2713 Autosaved",
                             style = MaterialTheme.typography.bodySmall,
                             fontWeight = FontWeight.SemiBold,
-                            color = MaterialTheme.colorScheme.secondary
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
+                        TextButton(
+                            onClick = { showPreview = true },
+                            modifier = Modifier
+                                .weight(1f)
+                                .height(52.dp),
+                            contentPadding = PaddingValues(horizontal = 6.dp)
+                        ) { Text("Preview", maxLines = 1) }
                         OutlinedButton(
                             onClick = { vm.saveNow() },
                             modifier = Modifier
@@ -216,20 +227,9 @@ fun OrderScreen(vm: MainViewModel, snackbarHost: SnackbarHostState) {
                                 contentColor = MaterialTheme.colorScheme.primary
                             )
                         ) { Text("Save", maxLines = 1) }
-                        OutlinedButton(
-                            onClick = { showPreview = true },
-                            modifier = Modifier
-                                .weight(1f)
-                                .height(52.dp),
-                            contentPadding = PaddingValues(horizontal = 6.dp),
-                            border = BorderStroke(2.dp, MaterialTheme.colorScheme.outline),
-                            colors = ButtonDefaults.outlinedButtonColors(
-                                contentColor = MaterialTheme.colorScheme.onSurface
-                            )
-                        ) { Text("Preview", maxLines = 1) }
                         Button(
                             modifier = Modifier
-                                .weight(1f)
+                                .weight(1.5f)
                                 .height(52.dp),
                             contentPadding = PaddingValues(horizontal = 6.dp),
                             onClick = {
@@ -439,18 +439,33 @@ fun OrderScreen(vm: MainViewModel, snackbarHost: SnackbarHostState) {
 
 @Composable
 private fun LetterHeader(letter: String) {
-    Text(
-        text = letter,
+    Row(
         modifier = Modifier
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.background)
-            .padding(vertical = 6.dp, horizontal = 4.dp),
-        style = MaterialTheme.typography.headlineMedium,
-        fontWeight = FontWeight.Bold,
-        color = MaterialTheme.colorScheme.primary
-    )
+            .padding(top = 10.dp, bottom = 4.dp, start = 4.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = letter,
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+        HorizontalDivider(
+            modifier = Modifier
+                .weight(1f)
+                .padding(start = 10.dp),
+            color = MaterialTheme.colorScheme.outlineVariant
+        )
+    }
 }
 
+/**
+ * Level 1: the item name. Level 2: the quantity of rows you filled in.
+ * Level 3: type labels, +/- and the tag chips. Cards with a quantity turn blue so you can
+ * see at a glance what is already in the order; empty cards stay quiet.
+ */
 @Composable
 private fun ItemCard(
     itemUi: ItemUi,
@@ -459,22 +474,54 @@ private fun ItemCard(
     vm: MainViewModel
 ) {
     val item = itemUi.item
+    val entered = itemUi.rows.count { vm.qtyOf(it).isNotBlank() }
+    val active = entered > 0
+    val colors = MaterialTheme.colorScheme
+
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
-        border = BorderStroke(1.5.dp, MaterialTheme.colorScheme.outlineVariant)
+        colors = CardDefaults.cardColors(
+            containerColor = if (active) colors.primaryContainer else colors.surface
+        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
+        border = BorderStroke(
+            if (active) 2.dp else 1.dp,
+            if (active) colors.primary else colors.outlineVariant
+        )
     ) {
-        Column(Modifier.padding(14.dp)) {
-            Text(
-                text = item.name,
-                style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.Bold
-            )
-            HorizontalDivider(Modifier.padding(vertical = 8.dp))
+        Column(
+            modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = item.name,
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = colors.onBackground,
+                    modifier = Modifier.weight(1f)
+                )
+                if (active) {
+                    Box(
+                        modifier = Modifier
+                            .size(34.dp)
+                            .background(colors.primary, CircleShape),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = entered.toString(),
+                            color = colors.onPrimary,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 16.sp
+                        )
+                    }
+                }
+            }
 
-            itemUi.rows.forEach { row ->
+            itemUi.rows.forEachIndexed { index, row ->
+                if (index > 0) {
+                    HorizontalDivider(color = colors.outlineVariant.copy(alpha = 0.5f))
+                }
                 key(row.key) {
                     VariantRow(
                         itemName = item.name,
@@ -487,8 +534,11 @@ private fun ItemCard(
                 }
             }
 
-            TextButton(onClick = { vm.addCustom(item.id) }) {
-                Text("+ Additional type")
+            TextButton(
+                onClick = { vm.addCustom(item.id) },
+                contentPadding = PaddingValues(horizontal = 4.dp)
+            ) {
+                Text("+ Add type", style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.SemiBold)
             }
         }
     }
@@ -503,13 +553,12 @@ private fun VariantRow(
     numberKeypad: Boolean,
     vm: MainViewModel
 ) {
+    val colors = MaterialTheme.colorScheme
+    val qty = vm.qtyOf(row)
+    val entered = qty.isNotBlank()
+
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 10.dp)
-            .background(MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(12.dp))
-            .border(1.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(12.dp))
-            .padding(10.dp),
+        modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         if (row.isCustom) {
@@ -529,7 +578,7 @@ private fun VariantRow(
             Text(
                 text = row.typeName,
                 style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.SemiBold
+                color = if (entered) colors.onBackground else colors.onSurfaceVariant
             )
         }
 
@@ -537,76 +586,83 @@ private fun VariantRow(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            FilledTonalButton(
-                onClick = { vm.step(itemId, row, -1) },
-                modifier = Modifier.size(60.dp),
-                contentPadding = PaddingValues(0.dp)
-            ) { Text("−", fontSize = 32.sp, fontWeight = FontWeight.Bold) }
+            StepButton("\u2212") { vm.step(itemId, row, -1) }
 
             OutlinedTextField(
-                value = vm.qtyOf(row),
+                value = qty,
                 onValueChange = { vm.setQty(itemId, row, it) },
                 modifier = Modifier.weight(1f),
                 singleLine = true,
-                textStyle = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
+                textStyle = MaterialTheme.typography.titleLarge.copy(
+                    fontWeight = FontWeight.Bold,
+                    color = if (entered) colors.primary else colors.onSurface
+                ),
                 placeholder = { Text("Qty") },
+                colors = OutlinedTextFieldDefaults.colors(
+                    unfocusedBorderColor = if (entered) colors.primary else colors.outline,
+                    focusedBorderColor = colors.primary
+                ),
                 keyboardOptions = KeyboardOptions(
                     keyboardType = if (numberKeypad) KeyboardType.Number else KeyboardType.Text
                 )
             )
 
-            FilledTonalButton(
-                onClick = { vm.step(itemId, row, 1) },
-                modifier = Modifier.size(60.dp),
-                contentPadding = PaddingValues(0.dp)
-            ) { Text("+", fontSize = 32.sp, fontWeight = FontWeight.Bold) }
+            StepButton("+") { vm.step(itemId, row, 1) }
         }
 
-        FlagSelector(
-            flags = flags,
-            selected = row.flag,
-            onSelect = { vm.setFlag(itemId, row, it) }
-        )
+        // Tags only appear once there is a quantity, so empty rows stay calm.
+        if (entered) {
+            FlagChips(
+                flags = flags,
+                selected = row.flag,
+                onSelect = { vm.setFlag(itemId, row, it) }
+            )
+        }
     }
 }
 
 @Composable
-private fun FlagSelector(flags: List<FlagEntity>, selected: String, onSelect: (String) -> Unit) {
+private fun StepButton(label: String, onClick: () -> Unit) {
+    OutlinedButton(
+        onClick = onClick,
+        modifier = Modifier.size(52.dp),
+        contentPadding = PaddingValues(0.dp),
+        shape = RoundedCornerShape(12.dp),
+        border = BorderStroke(1.5.dp, MaterialTheme.colorScheme.outline),
+        colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.primary)
+    ) {
+        Text(label, fontSize = 28.sp, fontWeight = FontWeight.Bold)
+    }
+}
+
+@Composable
+private fun FlagChips(flags: List<FlagEntity>, selected: String, onSelect: (String) -> Unit) {
     val options = listOf("" to "None") + flags.map { it.id to it.label }
-    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-        options.chunked(2).forEach { pair ->
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(6.dp)
-            ) {
-                pair.forEach { (id, label) ->
-                    if (selected == id) {
-                        Button(
-                            onClick = { onSelect(id) },
-                            modifier = Modifier
-                                .weight(1f)
-                                .height(48.dp),
-                            contentPadding = PaddingValues(horizontal = 4.dp)
-                        ) {
-                            Text("\u2713 $label", maxLines = 1, fontWeight = FontWeight.Bold)
-                        }
-                    } else {
-                        OutlinedButton(
-                            onClick = { onSelect(id) },
-                            modifier = Modifier
-                                .weight(1f)
-                                .height(48.dp),
-                            border = BorderStroke(2.dp, MaterialTheme.colorScheme.outline),
-                            colors = ButtonDefaults.outlinedButtonColors(
-                                contentColor = MaterialTheme.colorScheme.onSurface
-                            ),
-                            contentPadding = PaddingValues(horizontal = 4.dp)
-                        ) {
-                            Text(label, maxLines = 1)
-                        }
-                    }
+    FlowRow(
+        horizontalArrangement = Arrangement.spacedBy(6.dp),
+        verticalArrangement = Arrangement.spacedBy(6.dp)
+    ) {
+        options.forEach { (id, label) ->
+            if (selected == id) {
+                Button(
+                    onClick = { onSelect(id) },
+                    modifier = Modifier.height(44.dp),
+                    contentPadding = PaddingValues(horizontal = 14.dp)
+                ) {
+                    Text("\u2713 $label", maxLines = 1)
                 }
-                if (pair.size == 1) Spacer(Modifier.weight(1f))
+            } else {
+                OutlinedButton(
+                    onClick = { onSelect(id) },
+                    modifier = Modifier.height(44.dp),
+                    contentPadding = PaddingValues(horizontal = 14.dp),
+                    border = BorderStroke(1.5.dp, MaterialTheme.colorScheme.outline),
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        contentColor = MaterialTheme.colorScheme.onSurface
+                    )
+                ) {
+                    Text(label, maxLines = 1)
+                }
             }
         }
     }

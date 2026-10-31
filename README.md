@@ -1,44 +1,31 @@
-# Checklist Restocker (native Android)
+# FP (Checklist Restocker, native Android)
 
 Native Kotlin + Jetpack Compose port of the Orencio Mendoza order checklist PWA.
 Autosaves the current list, sends it through the Android share sheet, keeps order history,
 and lets you edit items and types inside the app.
 
-## First-time setup (about 10 minutes)
+## Building and installing
 
-1. Create a NEW empty GitHub repo (keep your PWA repo untouched) and push this folder to its `main` branch.
+1. Push this folder to your GitHub repo's `main` branch (the workflow is `.github/workflows/build.yml`).
+2. Every push builds a signed APK and publishes it on the repo's **Releases** page (v1.0.1, v1.0.2, ...).
+   The same file is also under the run's Artifacts.
+3. Download the newest APK on your phone and install it. It updates the existing app in place and keeps
+   your saved lists.
 
-2. Create your signing key ONCE and keep the file somewhere safe (also back it up):
+No secrets or setup are needed. The signing key is `app/restocker.jks`, committed on purpose, so every
+build is signed identically. Do not delete or regenerate it after you have installed the app.
 
-       keytool -genkeypair -v -keystore release.jks -alias restocker -keyalg RSA -keysize 2048 -validity 10000
+If Android ever says the app "conflicts with an existing package", the installed copy was signed with a
+different key. Uninstall that copy once (this erases its data) and install the new one; after that all
+updates work.
 
-3. Turn the key into text:
-
-   - Windows PowerShell: `[Convert]::ToBase64String([IO.File]::ReadAllBytes("release.jks")) | Set-Clipboard`
-   - macOS / Linux: `base64 -w0 release.jks`
-
-4. In the repo: Settings > Secrets and variables > Actions > New repository secret. Add four:
-
-   | Name | Value |
-   |---|---|
-   | `KEYSTORE_BASE64` | the text from step 3 |
-   | `KEYSTORE_PASSWORD` | the keystore password you chose |
-   | `KEY_ALIAS` | `restocker` |
-   | `KEY_PASSWORD` | the key password you chose |
-
-5. Do this BEFORE the first build you plan to keep. Without the secrets the workflow signs with a
-   throwaway debug key, and an APK signed that way can't be updated in place later.
-
-6. Push, or open the Actions tab and run "Build APK". Download the `ChecklistRestocker-apk` artifact,
-   unzip it, and install `app-release.apk` on your phone.
-
-Every later build uses the same key and a higher version number, so it installs over the old app
-and keeps all saved data.
+Tip: keep the repo private. Anyone who can read the repo can read the key.
 
 ## Building locally
 
 Open the folder in Android Studio and press Run. (No Gradle wrapper is included; Android Studio
-will offer to set one up, or run `gradle wrapper` once.)
+will offer to set one up, or run `gradle wrapper` once.) Debug builds use the same key, so they update
+release builds and the other way round.
 
 ## Where things are
 

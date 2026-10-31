@@ -11,48 +11,46 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.sp
 
-// High-contrast light theme (every text/background pair is at least 7:1, i.e. WCAG AAA;
-// borders and outlines are at least 4.5:1). Same page/card layout as the original PWA.
+// White and blue only. Page and cards are pure white, accents are blue, text is deep navy.
+// Every text/background pair is at least 7:1 (WCAG AAA); borders are at least 3:1.
 private val LightColors = lightColorScheme(
     primary = Color(0xFF1E40AF),
     onPrimary = Color.White,
-    primaryContainer = Color(0xFFDBE7FF),
+    primaryContainer = Color(0xFFE8F0FF),        // light blue tint for "has quantity" cards
     onPrimaryContainer = Color(0xFF0B1F5C),
     inversePrimary = Color(0xFF93C5FD),
-    secondary = Color(0xFF166534),
+    secondary = Color(0xFF1E40AF),
     onSecondary = Color.White,
-    // Selected chips use this: dark blue with white text instead of a pale tint.
-    secondaryContainer = Color(0xFF1E40AF),
+    secondaryContainer = Color(0xFF1E40AF),       // selected chips: solid blue, white text
     onSecondaryContainer = Color.White,
-    background = Color(0xFFF4F6F9),
-    onBackground = Color(0xFF0B0F19),
-    surface = Color.White,
-    onSurface = Color(0xFF0B0F19),
-    surfaceVariant = Color(0xFFE5EAF2),
-    onSurfaceVariant = Color(0xFF1F2937),
-    surfaceTint = Color.White,
-    inverseSurface = Color(0xFF111827),
-    inverseOnSurface = Color.White,
-    tertiary = Color(0xFF075985),
+    tertiary = Color(0xFF1D4ED8),
     onTertiary = Color.White,
-    tertiaryContainer = Color(0xFFD6ECFA),
-    onTertiaryContainer = Color(0xFF082F49),
-    errorContainer = Color(0xFFFEE2E2),
-    onErrorContainer = Color(0xFF7F1D1D),
+    tertiaryContainer = Color(0xFFE8F0FF),
+    onTertiaryContainer = Color(0xFF0B1F5C),
+    background = Color.White,
+    onBackground = Color(0xFF0A1A44),
+    surface = Color.White,
+    onSurface = Color(0xFF0A1A44),
+    surfaceVariant = Color(0xFFEAF1FF),
+    onSurfaceVariant = Color(0xFF3B4A6B),         // muted text
+    surfaceTint = Color.White,
+    inverseSurface = Color(0xFF0A1A44),
+    inverseOnSurface = Color.White,
     surfaceContainerLowest = Color.White,
     surfaceContainerLow = Color.White,
     surfaceContainer = Color.White,
-    surfaceContainerHigh = Color(0xFFEDF0F6),
-    surfaceContainerHighest = Color(0xFFE9EDF4),
-    outline = Color(0xFF4B5563),
-    outlineVariant = Color(0xFF6B7280),
+    surfaceContainerHigh = Color(0xFFEAF1FF),
+    surfaceContainerHighest = Color(0xFFEEF4FF),
+    outline = Color(0xFF2F4A8F),                   // input and button borders
+    outlineVariant = Color(0xFF6F8FD8),            // card borders and dividers
     error = Color(0xFF991B1B),
-    onError = Color.White
+    onError = Color.White,
+    errorContainer = Color(0xFFFEE2E2),
+    onErrorContainer = Color(0xFF7F1D1D)
 )
 
 private val base = Typography()
 
-// Bigger and heavier than the Material defaults.
 private val BigTypography = Typography(
     bodyLarge = base.bodyLarge.copy(fontSize = 18.sp, lineHeight = 26.sp),
     bodyMedium = base.bodyMedium.copy(fontSize = 17.sp, lineHeight = 24.sp),
