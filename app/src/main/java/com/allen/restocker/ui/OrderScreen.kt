@@ -40,7 +40,6 @@ import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -179,39 +178,69 @@ fun OrderScreen(vm: MainViewModel, snackbarHost: SnackbarHostState) {
         },
         bottomBar = {
             Surface(tonalElevation = 3.dp, shadowElevation = 6.dp) {
-                Row(
+                Column(
                     modifier = Modifier
                         .fillMaxWidth()
                         .navigationBarsPadding()
                         .padding(horizontal = 12.dp, vertical = 10.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = if (ui.lineCount == 1) "1 line" else "${ui.lineCount} lines",
-                        style = MaterialTheme.typography.titleMedium,
-                        modifier = Modifier.weight(1f)
-                    )
-                    OutlinedButton(
-                        onClick = { showPreview = true },
-                        modifier = Modifier.height(52.dp),
-                        border = BorderStroke(2.dp, MaterialTheme.colorScheme.outline),
-                        colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.onSurface)
-                    ) { Text("Preview") }
-                    Button(
-                        modifier = Modifier.height(52.dp),
-                        onClick = {
-                            if (ui.text.isEmpty()) {
-                                vm.snacks.tryEmit(SnackEvent("List is empty"))
-                            } else {
-                                shareText(context, ui.text)
-                                vm.saveSent()
-                            }
-                        }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        Icon(Icons.Default.Send, contentDescription = null, modifier = Modifier.size(18.dp))
-                        Spacer(Modifier.width(6.dp))
-                        Text("Send")
+                        Text(
+                            text = if (ui.lineCount == 1) "1 line" else "${ui.lineCount} lines",
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                        Text(
+                            text = "\u2713 Autosaved",
+                            style = MaterialTheme.typography.bodySmall,
+                            fontWeight = FontWeight.SemiBold,
+                            color = MaterialTheme.colorScheme.secondary
+                        )
+                    }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        OutlinedButton(
+                            onClick = { vm.saveNow() },
+                            modifier = Modifier
+                                .weight(1f)
+                                .height(52.dp),
+                            contentPadding = PaddingValues(horizontal = 6.dp),
+                            border = BorderStroke(2.dp, MaterialTheme.colorScheme.primary),
+                            colors = ButtonDefaults.outlinedButtonColors(
+                                contentColor = MaterialTheme.colorScheme.primary
+                            )
+                        ) { Text("Save", maxLines = 1) }
+                        OutlinedButton(
+                            onClick = { showPreview = true },
+                            modifier = Modifier
+                                .weight(1f)
+                                .height(52.dp),
+                            contentPadding = PaddingValues(horizontal = 6.dp),
+                            border = BorderStroke(2.dp, MaterialTheme.colorScheme.outline),
+                            colors = ButtonDefaults.outlinedButtonColors(
+                                contentColor = MaterialTheme.colorScheme.onSurface
+                            )
+                        ) { Text("Preview", maxLines = 1) }
+                        Button(
+                            modifier = Modifier
+                                .weight(1f)
+                                .height(52.dp),
+                            contentPadding = PaddingValues(horizontal = 6.dp),
+                            onClick = {
+                                if (ui.text.isEmpty()) {
+                                    vm.snacks.tryEmit(SnackEvent("List is empty"))
+                                } else {
+                                    shareText(context, ui.text)
+                                    vm.saveSent()
+                                }
+                            }
+                        ) { Text("Send", maxLines = 1) }
                     }
                 }
             }

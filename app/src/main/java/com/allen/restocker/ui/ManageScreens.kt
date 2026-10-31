@@ -78,7 +78,11 @@ fun ManageItemsScreen(vm: MainViewModel, snackbarHost: SnackbarHostState) {
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = { vm.screen = Screen.EditItem(null) }) {
+            FloatingActionButton(
+                onClick = { vm.screen = Screen.EditItem(null) },
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary
+            ) {
                 Icon(Icons.Default.Add, contentDescription = "Add item")
             }
         },

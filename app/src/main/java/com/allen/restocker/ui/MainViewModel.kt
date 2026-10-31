@@ -347,6 +347,25 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
+    /**
+     * The Save button. It runs after every pending edit has been written, so whatever was typed
+     * is guaranteed to be stored, and it also keeps a copy in history (never a duplicate).
+     */
+    fun saveNow() {
+        write {
+            val cs = catalog.value
+            val lines = repo.currentLines()
+            val built = OrderText.build(cs.header, cs.items, cs.types, cs.flags, lines)
+            if (built.lineCount == 0) {
+                snack("Nothing to save yet")
+            } else if (repo.saveToHistory(built.text, built.lineCount, lines)) {
+                snack("Saved. Your list stays when you close the app")
+            } else {
+                snack("Saved. Nothing changed since the last save")
+            }
+        }
+    }
+
     /** "Done": makes sure the list is in history, then empties it for the next order. */
     fun startNewList() {
         write {
