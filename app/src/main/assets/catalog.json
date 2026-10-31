@@ -1,0 +1,1687 @@
+{
+  "version": 1,
+  "flags": [
+    {
+      "id": "buo",
+      "label": "Buo"
+    },
+    {
+      "id": "chichirya",
+      "label": "Chichirya"
+    },
+    {
+      "id": "promo",
+      "label": "Promo"
+    }
+  ],
+  "items": [
+    {
+      "id": "homi",
+      "name": "Homi",
+      "category": "general",
+      "types": [
+        {
+          "id": "homi.beef",
+          "name": "Beef"
+        },
+        {
+          "id": "homi.chicken",
+          "name": "Chicken"
+        }
+      ]
+    },
+    {
+      "id": "arina",
+      "name": "Arina",
+      "category": "general",
+      "types": [
+        {
+          "id": "arina.3rd-class",
+          "name": "3rd Class"
+        }
+      ]
+    },
+    {
+      "id": "asin",
+      "name": "Asin",
+      "category": "general",
+      "types": [
+        {
+          "id": "asin.main",
+          "name": "Asin"
+        }
+      ]
+    },
+    {
+      "id": "milagrosa",
+      "name": "Milagrosa",
+      "category": "general",
+      "types": [
+        {
+          "id": "milagrosa.main",
+          "name": "Milagrosa"
+        }
+      ]
+    },
+    {
+      "id": "hobe",
+      "name": "Hobe",
+      "category": "general",
+      "types": [
+        {
+          "id": "hobe.main",
+          "name": "Hobe"
+        }
+      ]
+    },
+    {
+      "id": "komeya",
+      "name": "Komeya",
+      "category": "general",
+      "types": [
+        {
+          "id": "komeya.main",
+          "name": "Komeya"
+        }
+      ]
+    },
+    {
+      "id": "nature-s-spring",
+      "name": "Nature's Spring",
+      "category": "general",
+      "types": [
+        {
+          "id": "nature-s-spring.purified-1-liter",
+          "name": "Purified 1 Liter"
+        }
+      ]
+    },
+    {
+      "id": "refresh",
+      "name": "Refresh",
+      "category": "general",
+      "types": [
+        {
+          "id": "refresh.main",
+          "name": "Refresh"
+        }
+      ]
+    },
+    {
+      "id": "cobra",
+      "name": "Cobra",
+      "category": "general",
+      "types": [
+        {
+          "id": "cobra.yellow",
+          "name": "Yellow"
+        },
+        {
+          "id": "cobra.green",
+          "name": "Green"
+        }
+      ]
+    },
+    {
+      "id": "sting",
+      "name": "Sting",
+      "category": "general",
+      "types": [
+        {
+          "id": "sting.red",
+          "name": "Red"
+        }
+      ]
+    },
+    {
+      "id": "mountain-dew",
+      "name": "Mountain Dew",
+      "category": "general",
+      "types": [
+        {
+          "id": "mountain-dew.main",
+          "name": "Mountain Dew"
+        }
+      ]
+    },
+    {
+      "id": "crossini",
+      "name": "Crossini",
+      "category": "general",
+      "types": [
+        {
+          "id": "crossini.bavarian",
+          "name": "Bavarian"
+        },
+        {
+          "id": "crossini.choco",
+          "name": "Choco"
+        }
+      ]
+    },
+    {
+      "id": "silver-swan",
+      "name": "Silver Swan",
+      "category": "general",
+      "types": [
+        {
+          "id": "silver-swan.soy-sauce-100ml-pouch",
+          "name": "Soy Sauce 100ml Pouch"
+        },
+        {
+          "id": "silver-swan.sukang-puti-100ml-pouch",
+          "name": "Sukang Puti 100ml Pouch"
+        }
+      ]
+    },
+    {
+      "id": "loaded",
+      "name": "Loaded",
+      "category": "general",
+      "types": [
+        {
+          "id": "loaded.choco",
+          "name": "Choco"
+        },
+        {
+          "id": "loaded.white",
+          "name": "White"
+        }
+      ]
+    },
+    {
+      "id": "oishi",
+      "name": "Oishi",
+      "category": "general",
+      "types": [
+        {
+          "id": "oishi.prawn",
+          "name": "Prawn"
+        },
+        {
+          "id": "oishi.red",
+          "name": "Red"
+        }
+      ]
+    },
+    {
+      "id": "patata",
+      "name": "Patata",
+      "category": "general",
+      "types": [
+        {
+          "id": "patata.main",
+          "name": "Patata"
+        }
+      ]
+    },
+    {
+      "id": "fish-crackers",
+      "name": "Fish Crackers",
+      "category": "general",
+      "types": [
+        {
+          "id": "fish-crackers.main",
+          "name": "Fish Crackers"
+        }
+      ]
+    },
+    {
+      "id": "ec",
+      "name": "EC",
+      "category": "general",
+      "types": [
+        {
+          "id": "ec.choco-60g-x10",
+          "name": "Choco 60g x10"
+        },
+        {
+          "id": "ec.milk-60g-x10",
+          "name": "Milk 60g x10"
+        },
+        {
+          "id": "ec.cheese-60g-x10",
+          "name": "Cheese 60g x10"
+        }
+      ]
+    },
+    {
+      "id": "super-crunch",
+      "name": "Super Crunch",
+      "category": "general",
+      "types": [
+        {
+          "id": "super-crunch.55gx10",
+          "name": "55gx10"
+        }
+      ]
+    },
+    {
+      "id": "tattoos",
+      "name": "Tattoos",
+      "category": "general",
+      "types": [
+        {
+          "id": "tattoos.main",
+          "name": "Tattoos"
+        }
+      ]
+    },
+    {
+      "id": "yumshots",
+      "name": "Yumshots",
+      "category": "general",
+      "types": [
+        {
+          "id": "yumshots.main",
+          "name": "Yumshots"
+        }
+      ]
+    },
+    {
+      "id": "wrinkles-raisins",
+      "name": "Wrinkles Raisins",
+      "category": "general",
+      "types": [
+        {
+          "id": "wrinkles-raisins.main",
+          "name": "Wrinkles Raisins"
+        }
+      ]
+    },
+    {
+      "id": "master-gulaman",
+      "name": "Master Gulaman",
+      "category": "general",
+      "types": [
+        {
+          "id": "master-gulaman.buko-pandan-x10",
+          "name": "Buko Pandan x10"
+        }
+      ]
+    },
+    {
+      "id": "delicious-margarine",
+      "name": "Delicious Margarine",
+      "category": "general",
+      "types": [
+        {
+          "id": "delicious-margarine.main",
+          "name": "Delicious Margarine"
+        }
+      ]
+    },
+    {
+      "id": "reno",
+      "name": "Reno",
+      "category": "general",
+      "types": [
+        {
+          "id": "reno.liver-spread-small",
+          "name": "Liver Spread Small"
+        }
+      ]
+    },
+    {
+      "id": "papa-ketchup",
+      "name": "Papa Ketchup",
+      "category": "general",
+      "types": [
+        {
+          "id": "papa-ketchup.pouch-200g",
+          "name": "Pouch 200g"
+        }
+      ]
+    },
+    {
+      "id": "chuckie",
+      "name": "Chuckie",
+      "category": "general",
+      "types": [
+        {
+          "id": "chuckie.110ml",
+          "name": "110ml"
+        }
+      ]
+    },
+    {
+      "id": "vitasoy",
+      "name": "Vitasoy",
+      "category": "general",
+      "types": [
+        {
+          "id": "vitasoy.original",
+          "name": "Original"
+        },
+        {
+          "id": "vitasoy.chocolate",
+          "name": "Chocolate"
+        }
+      ]
+    },
+    {
+      "id": "knorr",
+      "name": "Knorr",
+      "category": "general",
+      "types": [
+        {
+          "id": "knorr.chicken-cubes",
+          "name": "Chicken Cubes"
+        },
+        {
+          "id": "knorr.pork-cubes",
+          "name": "Pork Cubes"
+        },
+        {
+          "id": "knorr.beef-cubes",
+          "name": "Beef Cubes"
+        },
+        {
+          "id": "knorr.sinigang",
+          "name": "Sinigang"
+        }
+      ]
+    },
+    {
+      "id": "gatorade",
+      "name": "Gatorade",
+      "category": "general",
+      "types": [
+        {
+          "id": "gatorade.blue-350ml",
+          "name": "Blue 350ml"
+        },
+        {
+          "id": "gatorade.blue-500ml",
+          "name": "Blue 500ml"
+        }
+      ]
+    },
+    {
+      "id": "karoke",
+      "name": "Karoke",
+      "category": "general",
+      "types": [
+        {
+          "id": "karoke.main",
+          "name": "Karoke"
+        }
+      ]
+    },
+    {
+      "id": "emperador",
+      "name": "Emperador",
+      "category": "general",
+      "types": [
+        {
+          "id": "emperador.double-light-lapad",
+          "name": "Double Light Lapad"
+        }
+      ]
+    },
+    {
+      "id": "daily-queso",
+      "name": "Daily Queso",
+      "category": "general",
+      "types": [
+        {
+          "id": "daily-queso.main",
+          "name": "Daily Queso"
+        }
+      ]
+    },
+    {
+      "id": "all-purpose-flour",
+      "name": "All-Purpose Flour",
+      "category": "general",
+      "types": [
+        {
+          "id": "all-purpose-flour.main",
+          "name": "All-Purpose Flour"
+        }
+      ]
+    },
+    {
+      "id": "cassava-flour",
+      "name": "Cassava Flour",
+      "category": "general",
+      "types": [
+        {
+          "id": "cassava-flour.main",
+          "name": "Cassava Flour"
+        }
+      ]
+    },
+    {
+      "id": "cornstarch",
+      "name": "Cornstarch",
+      "category": "general",
+      "types": [
+        {
+          "id": "cornstarch.main",
+          "name": "Cornstarch"
+        }
+      ]
+    },
+    {
+      "id": "misua",
+      "name": "Misua",
+      "category": "general",
+      "types": [
+        {
+          "id": "misua.main",
+          "name": "Misua"
+        }
+      ]
+    },
+    {
+      "id": "unipak",
+      "name": "Unipak",
+      "category": "general",
+      "types": [
+        {
+          "id": "unipak.squid",
+          "name": "Squid"
+        },
+        {
+          "id": "unipak.mackerel",
+          "name": "Mackerel"
+        }
+      ]
+    },
+    {
+      "id": "555",
+      "name": "555",
+      "category": "general",
+      "types": [
+        {
+          "id": "555.sardines",
+          "name": "Sardines"
+        }
+      ]
+    },
+    {
+      "id": "youngs-town",
+      "name": "Youngs Town",
+      "category": "general",
+      "types": [
+        {
+          "id": "youngs-town.sardines-red-155g",
+          "name": "Sardines Red 155g"
+        },
+        {
+          "id": "youngs-town.sardines-green",
+          "name": "Sardines Green"
+        },
+        {
+          "id": "youngs-town.mackerel",
+          "name": "Mackerel"
+        }
+      ]
+    },
+    {
+      "id": "stateside-paminta",
+      "name": "Stateside Paminta",
+      "category": "general",
+      "types": [
+        {
+          "id": "stateside-paminta.durog-50s",
+          "name": "Durog 50s"
+        },
+        {
+          "id": "stateside-paminta.buo-50s",
+          "name": "Buo 50s"
+        }
+      ]
+    },
+    {
+      "id": "ajinomoto",
+      "name": "Ajinomoto",
+      "category": "general",
+      "types": [
+        {
+          "id": "ajinomoto.vetsin-11g-x18",
+          "name": "Vetsin 11g x18"
+        },
+        {
+          "id": "ajinomoto.vetsin-24g-x8",
+          "name": "Vetsin 24g x8"
+        }
+      ]
+    },
+    {
+      "id": "ginisa",
+      "name": "Ginisa",
+      "category": "general",
+      "types": [
+        {
+          "id": "ginisa.mix-8g-x16",
+          "name": "Mix 8g x16"
+        }
+      ]
+    },
+    {
+      "id": "doreen",
+      "name": "Doreen",
+      "category": "general",
+      "types": [
+        {
+          "id": "doreen.main",
+          "name": "Doreen"
+        }
+      ]
+    },
+    {
+      "id": "mogu-mogu",
+      "name": "Mogu-Mogu",
+      "category": "general",
+      "types": [
+        {
+          "id": "mogu-mogu.coconut",
+          "name": "Coconut"
+        },
+        {
+          "id": "mogu-mogu.lychee",
+          "name": "Lychee"
+        },
+        {
+          "id": "mogu-mogu.strawberry",
+          "name": "Strawberry"
+        }
+      ]
+    },
+    {
+      "id": "knorr-sinigang",
+      "name": "Knorr Sinigang",
+      "category": "general",
+      "types": [
+        {
+          "id": "knorr-sinigang.original",
+          "name": "Original"
+        },
+        {
+          "id": "knorr-sinigang.gabi",
+          "name": "Gabi"
+        },
+        {
+          "id": "knorr-sinigang.isda",
+          "name": "Isda"
+        }
+      ]
+    },
+    {
+      "id": "her-c",
+      "name": "Her-C",
+      "category": "general",
+      "types": [
+        {
+          "id": "her-c.laurel",
+          "name": "Laurel"
+        },
+        {
+          "id": "her-c.star-anis",
+          "name": "Star Anis"
+        },
+        {
+          "id": "her-c.sibut-20g",
+          "name": "Sibut 20g"
+        },
+        {
+          "id": "her-c.sibut-10g",
+          "name": "Sibut 10g"
+        },
+        {
+          "id": "her-c.curry-powder",
+          "name": "Curry Powder"
+        },
+        {
+          "id": "her-c.sesame-seeds-20g",
+          "name": "Sesame Seeds 20g"
+        }
+      ]
+    },
+    {
+      "id": "payless",
+      "name": "Payless",
+      "category": "general",
+      "types": [
+        {
+          "id": "payless.chicken-noodles",
+          "name": "Chicken Noodles"
+        },
+        {
+          "id": "payless.beef-noodles",
+          "name": "Beef Noodles"
+        },
+        {
+          "id": "payless.xtra-big-pancit-canton-kalamansi",
+          "name": "Xtra Big Pancit Canton Kalamansi"
+        },
+        {
+          "id": "payless.xtra-big-pancit-canton-chilimansi",
+          "name": "Xtra Big Pancit Canton Chilimansi"
+        },
+        {
+          "id": "payless.xtra-big-pancit-canton-sweet-spicy",
+          "name": "Xtra Big Pancit Canton Sweet & Spicy"
+        }
+      ]
+    },
+    {
+      "id": "mothers-best-caldereta-mix",
+      "name": "Mothers Best Caldereta Mix",
+      "category": "general",
+      "types": [
+        {
+          "id": "mothers-best-caldereta-mix.main",
+          "name": "Mothers Best Caldereta Mix"
+        }
+      ]
+    },
+    {
+      "id": "lasap-gata",
+      "name": "Lasap Gata",
+      "category": "general",
+      "types": [
+        {
+          "id": "lasap-gata.main",
+          "name": "Lasap Gata"
+        }
+      ]
+    },
+    {
+      "id": "calumet",
+      "name": "Calumet",
+      "category": "general",
+      "types": [
+        {
+          "id": "calumet.main",
+          "name": "Calumet"
+        }
+      ]
+    },
+    {
+      "id": "gawgaw",
+      "name": "Gawgaw",
+      "category": "general",
+      "types": [
+        {
+          "id": "gawgaw.main",
+          "name": "Gawgaw"
+        }
+      ]
+    },
+    {
+      "id": "mega-prime-whole-corn",
+      "name": "Mega Prime Whole Corn",
+      "category": "general",
+      "types": [
+        {
+          "id": "mega-prime-whole-corn.main",
+          "name": "Mega Prime Whole Corn"
+        }
+      ]
+    },
+    {
+      "id": "argentina",
+      "name": "Argentina",
+      "category": "general",
+      "types": [
+        {
+          "id": "argentina.meat-loaf",
+          "name": "Meat Loaf"
+        },
+        {
+          "id": "argentina.corned-beef",
+          "name": "Corned Beef"
+        }
+      ]
+    },
+    {
+      "id": "choco-mucho",
+      "name": "Choco Mucho",
+      "category": "general",
+      "types": [
+        {
+          "id": "choco-mucho.main",
+          "name": "Choco Mucho"
+        }
+      ]
+    },
+    {
+      "id": "cloud-9",
+      "name": "Cloud 9",
+      "category": "general",
+      "types": [
+        {
+          "id": "cloud-9.main",
+          "name": "Cloud 9"
+        }
+      ]
+    },
+    {
+      "id": "beng-beng",
+      "name": "Beng Beng",
+      "category": "general",
+      "types": [
+        {
+          "id": "beng-beng.main",
+          "name": "Beng Beng"
+        }
+      ]
+    },
+    {
+      "id": "gumball",
+      "name": "Gumball",
+      "category": "general",
+      "types": [
+        {
+          "id": "gumball.jumbo",
+          "name": "Jumbo"
+        }
+      ]
+    },
+    {
+      "id": "barnuts",
+      "name": "Barnuts",
+      "category": "general",
+      "types": [
+        {
+          "id": "barnuts.main",
+          "name": "Barnuts"
+        }
+      ]
+    },
+    {
+      "id": "lucky-me",
+      "name": "Lucky Me",
+      "category": "general",
+      "types": [
+        {
+          "id": "lucky-me.chicken-noodles",
+          "name": "Chicken Noodles"
+        },
+        {
+          "id": "lucky-me.beef-noodles",
+          "name": "Beef Noodles"
+        },
+        {
+          "id": "lucky-me.pancit-canton-original",
+          "name": "Pancit Canton Original"
+        },
+        {
+          "id": "lucky-me.pancit-canton-kalamansi",
+          "name": "Pancit Canton Kalamansi"
+        },
+        {
+          "id": "lucky-me.pancit-canton-chilimansi",
+          "name": "Pancit Canton Chilimansi"
+        },
+        {
+          "id": "lucky-me.pancit-canton-sweet-spicy",
+          "name": "Pancit Canton Sweet & Spicy"
+        },
+        {
+          "id": "lucky-me.pancit-canton-extra-hot",
+          "name": "Pancit Canton Extra Hot"
+        }
+      ]
+    },
+    {
+      "id": "dutchmill",
+      "name": "Dutchmill",
+      "category": "general",
+      "types": [
+        {
+          "id": "dutchmill.small-saver-pack",
+          "name": "Small Saver Pack"
+        }
+      ]
+    },
+    {
+      "id": "richeese",
+      "name": "Richeese",
+      "category": "general",
+      "types": [
+        {
+          "id": "richeese.main",
+          "name": "Richeese"
+        }
+      ]
+    },
+    {
+      "id": "richoco",
+      "name": "Richoco",
+      "category": "general",
+      "types": [
+        {
+          "id": "richoco.main",
+          "name": "Richoco"
+        }
+      ]
+    },
+    {
+      "id": "jb-bagoong",
+      "name": "JB Bagoong",
+      "category": "general",
+      "types": [
+        {
+          "id": "jb-bagoong.small",
+          "name": "Small"
+        },
+        {
+          "id": "jb-bagoong.big",
+          "name": "Big"
+        }
+      ]
+    },
+    {
+      "id": "zest-o",
+      "name": "Zest-O",
+      "category": "general",
+      "types": [
+        {
+          "id": "zest-o.orange",
+          "name": "Orange"
+        },
+        {
+          "id": "zest-o.apple",
+          "name": "Apple"
+        }
+      ]
+    },
+    {
+      "id": "koolers",
+      "name": "Koolers",
+      "category": "general",
+      "types": [
+        {
+          "id": "koolers.grapes",
+          "name": "Grapes"
+        }
+      ]
+    },
+    {
+      "id": "dingdong",
+      "name": "DingDong",
+      "category": "general",
+      "types": [
+        {
+          "id": "dingdong.main",
+          "name": "DingDong"
+        }
+      ]
+    },
+    {
+      "id": "happy",
+      "name": "Happy",
+      "category": "general",
+      "types": [
+        {
+          "id": "happy.main",
+          "name": "Happy"
+        }
+      ]
+    },
+    {
+      "id": "dragon-sid",
+      "name": "Dragon Sid",
+      "category": "general",
+      "types": [
+        {
+          "id": "dragon-sid.main",
+          "name": "Dragon Sid"
+        }
+      ]
+    },
+    {
+      "id": "muncher",
+      "name": "Muncher",
+      "category": "general",
+      "types": [
+        {
+          "id": "muncher.main",
+          "name": "Muncher"
+        }
+      ]
+    },
+    {
+      "id": "softee",
+      "name": "Softee",
+      "category": "general",
+      "types": [
+        {
+          "id": "softee.main",
+          "name": "Softee"
+        }
+      ]
+    },
+    {
+      "id": "flat-tops",
+      "name": "Flat Tops",
+      "category": "general",
+      "types": [
+        {
+          "id": "flat-tops.100s",
+          "name": "100s"
+        }
+      ]
+    },
+    {
+      "id": "rebisco",
+      "name": "Rebisco",
+      "category": "general",
+      "types": [
+        {
+          "id": "rebisco.crackers",
+          "name": "Crackers"
+        },
+        {
+          "id": "rebisco.choco",
+          "name": "Choco"
+        },
+        {
+          "id": "rebisco.pastillas",
+          "name": "Pastillas"
+        }
+      ]
+    },
+    {
+      "id": "hansel",
+      "name": "Hansel",
+      "category": "general",
+      "types": [
+        {
+          "id": "hansel.crackers",
+          "name": "Crackers"
+        },
+        {
+          "id": "hansel.milk-sandwich",
+          "name": "Milk Sandwich"
+        },
+        {
+          "id": "hansel.mocha-sandwich",
+          "name": "Mocha Sandwich"
+        }
+      ]
+    },
+    {
+      "id": "iced-gem",
+      "name": "Iced Gem",
+      "category": "general",
+      "types": [
+        {
+          "id": "iced-gem.main",
+          "name": "Iced Gem"
+        }
+      ]
+    },
+    {
+      "id": "doowee-donut",
+      "name": "Doowee Donut",
+      "category": "general",
+      "types": [
+        {
+          "id": "doowee-donut.milk",
+          "name": "Milk"
+        },
+        {
+          "id": "doowee-donut.strawberry",
+          "name": "Strawberry"
+        },
+        {
+          "id": "doowee-donut.choco",
+          "name": "Choco"
+        }
+      ]
+    },
+    {
+      "id": "fudgee-barr",
+      "name": "Fudgee Barr",
+      "category": "general",
+      "types": [
+        {
+          "id": "fudgee-barr.macapuno",
+          "name": "Macapuno"
+        },
+        {
+          "id": "fudgee-barr.choco",
+          "name": "Choco"
+        },
+        {
+          "id": "fudgee-barr.milk",
+          "name": "Milk"
+        },
+        {
+          "id": "fudgee-barr.vanilla",
+          "name": "Vanilla"
+        },
+        {
+          "id": "fudgee-barr.assorted",
+          "name": "Assorted"
+        }
+      ]
+    },
+    {
+      "id": "sky-flakes",
+      "name": "Sky Flakes",
+      "category": "general",
+      "types": [
+        {
+          "id": "sky-flakes.main",
+          "name": "Sky Flakes"
+        }
+      ]
+    },
+    {
+      "id": "fita",
+      "name": "Fita",
+      "category": "general",
+      "types": [
+        {
+          "id": "fita.crackers-10s",
+          "name": "Crackers 10s"
+        }
+      ]
+    },
+    {
+      "id": "chelly",
+      "name": "Chelly",
+      "category": "general",
+      "types": [
+        {
+          "id": "chelly.420s",
+          "name": "420s"
+        }
+      ]
+    },
+    {
+      "id": "mentos",
+      "name": "Mentos",
+      "category": "general",
+      "types": [
+        {
+          "id": "mentos.mint-420s",
+          "name": "Mint 420s"
+        }
+      ]
+    },
+    {
+      "id": "snowbear",
+      "name": "Snowbear",
+      "category": "general",
+      "types": [
+        {
+          "id": "snowbear.main",
+          "name": "Snowbear"
+        }
+      ]
+    },
+    {
+      "id": "lava-cake",
+      "name": "Lava Cake",
+      "category": "general",
+      "types": [
+        {
+          "id": "lava-cake.chocolate",
+          "name": "Chocolate"
+        },
+        {
+          "id": "lava-cake.bavarian",
+          "name": "Bavarian"
+        }
+      ]
+    },
+    {
+      "id": "inipit",
+      "name": "Inipit",
+      "category": "general",
+      "types": [
+        {
+          "id": "inipit.main",
+          "name": "Inipit"
+        }
+      ]
+    },
+    {
+      "id": "datu-puti",
+      "name": "Datu Puti",
+      "category": "general",
+      "types": [
+        {
+          "id": "datu-puti.soy-sauce",
+          "name": "Soy Sauce"
+        },
+        {
+          "id": "datu-puti.vinegar",
+          "name": "Vinegar"
+        }
+      ]
+    },
+    {
+      "id": "maxx-candies",
+      "name": "Maxx Candies",
+      "category": "general",
+      "types": [
+        {
+          "id": "maxx-candies.main",
+          "name": "Maxx Candies"
+        }
+      ]
+    },
+    {
+      "id": "eggnog",
+      "name": "Eggnog",
+      "category": "general",
+      "types": [
+        {
+          "id": "eggnog.main",
+          "name": "Eggnog"
+        }
+      ]
+    },
+    {
+      "id": "boy-bawang",
+      "name": "Boy Bawang",
+      "category": "general",
+      "types": [
+        {
+          "id": "boy-bawang.main",
+          "name": "Boy Bawang"
+        }
+      ]
+    },
+    {
+      "id": "clover",
+      "name": "Clover",
+      "category": "general",
+      "types": [
+        {
+          "id": "clover.main",
+          "name": "Clover"
+        }
+      ]
+    },
+    {
+      "id": "cracklings",
+      "name": "Cracklings",
+      "category": "general",
+      "types": [
+        {
+          "id": "cracklings.main",
+          "name": "Cracklings"
+        }
+      ]
+    },
+    {
+      "id": "fresca-tuna",
+      "name": "Fresca Tuna",
+      "category": "general",
+      "types": [
+        {
+          "id": "fresca-tuna.afritada",
+          "name": "Afritada"
+        },
+        {
+          "id": "fresca-tuna.caldereta",
+          "name": "Caldereta"
+        },
+        {
+          "id": "fresca-tuna.mechado",
+          "name": "Mechado"
+        },
+        {
+          "id": "fresca-tuna.adobo",
+          "name": "Adobo"
+        },
+        {
+          "id": "fresca-tuna.hot-and-spicy",
+          "name": "Hot and Spicy"
+        },
+        {
+          "id": "fresca-tuna.flakes-in-oil",
+          "name": "Flakes in Oil"
+        }
+      ]
+    },
+    {
+      "id": "kopiko",
+      "name": "Kopiko",
+      "category": "general",
+      "types": [
+        {
+          "id": "kopiko.black",
+          "name": "Black"
+        },
+        {
+          "id": "kopiko.brown",
+          "name": "Brown"
+        },
+        {
+          "id": "kopiko.blanca",
+          "name": "Blanca"
+        }
+      ]
+    },
+    {
+      "id": "bioderm",
+      "name": "Bioderm",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "bioderm.green",
+          "name": "Green"
+        },
+        {
+          "id": "bioderm.blue",
+          "name": "Blue"
+        },
+        {
+          "id": "bioderm.pink",
+          "name": "Pink"
+        }
+      ]
+    },
+    {
+      "id": "happy-cotton",
+      "name": "Happy Cotton",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "happy-cotton.main",
+          "name": "Happy Cotton"
+        }
+      ]
+    },
+    {
+      "id": "topz",
+      "name": "Topz",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "topz.kalamansi",
+          "name": "Kalamansi"
+        },
+        {
+          "id": "topz.blue",
+          "name": "Blue"
+        }
+      ]
+    },
+    {
+      "id": "school-supplies",
+      "name": "School Supplies",
+      "category": "cleaning",
+      "typeOnlyExport": true,
+      "types": [
+        {
+          "id": "school-supplies.easywrite-grade-1",
+          "name": "Easywrite Grade 1"
+        },
+        {
+          "id": "school-supplies.easywrite-grade-2",
+          "name": "Easywrite Grade 2"
+        },
+        {
+          "id": "school-supplies.easywrite-grade-3",
+          "name": "Easywrite Grade 3"
+        },
+        {
+          "id": "school-supplies.easywrite-grade-4",
+          "name": "Easywrite Grade 4"
+        },
+        {
+          "id": "school-supplies.panda-ballpen",
+          "name": "Panda Ballpen"
+        }
+      ]
+    },
+    {
+      "id": "kapas",
+      "name": "Kapas",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "kapas.main",
+          "name": "Kapas"
+        }
+      ]
+    },
+    {
+      "id": "jade-bathroom-tissue",
+      "name": "Jade Bathroom Tissue",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "jade-bathroom-tissue.main",
+          "name": "Jade Bathroom Tissue"
+        }
+      ]
+    },
+    {
+      "id": "posporo",
+      "name": "Posporo",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "posporo.main",
+          "name": "Posporo"
+        }
+      ]
+    },
+    {
+      "id": "a-b-candle",
+      "name": "A&B Candle",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "a-b-candle.main",
+          "name": "A&B Candle"
+        }
+      ]
+    },
+    {
+      "id": "lastiko",
+      "name": "Lastiko",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "lastiko.main",
+          "name": "Lastiko"
+        }
+      ]
+    },
+    {
+      "id": "lampein",
+      "name": "Lampein",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "lampein.m-15s-generic",
+          "name": "M 15s Generic"
+        },
+        {
+          "id": "lampein.l-15s-generic",
+          "name": "L 15s Generic"
+        },
+        {
+          "id": "lampein.xl-15s-generic",
+          "name": "XL 15s Generic"
+        }
+      ]
+    },
+    {
+      "id": "baby-wipes",
+      "name": "Baby Wipes",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "baby-wipes.tender-love-powder-scent",
+          "name": "Tender Love Powder Scent"
+        }
+      ]
+    },
+    {
+      "id": "eq",
+      "name": "EQ",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "eq.pants-m-40s",
+          "name": "Pants M 40s"
+        },
+        {
+          "id": "eq.pants-l-40s",
+          "name": "Pants L 40s"
+        },
+        {
+          "id": "eq.pants-xl-40s",
+          "name": "Pants XL 40s"
+        }
+      ]
+    },
+    {
+      "id": "pantyliners",
+      "name": "Pantyliners",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "pantyliners.main",
+          "name": "Pantyliners"
+        }
+      ]
+    },
+    {
+      "id": "lt-katol",
+      "name": "LT Katol",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "lt-katol.main",
+          "name": "LT Katol"
+        }
+      ]
+    },
+    {
+      "id": "hairworks-gel",
+      "name": "Hairworks Gel",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "hairworks-gel.main",
+          "name": "Hairworks Gel"
+        }
+      ]
+    },
+    {
+      "id": "rexona",
+      "name": "Rexona",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "rexona.main",
+          "name": "Rexona"
+        }
+      ]
+    },
+    {
+      "id": "off",
+      "name": "Off",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "off.main",
+          "name": "Off"
+        }
+      ]
+    },
+    {
+      "id": "kiwi",
+      "name": "Kiwi",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "kiwi.main",
+          "name": "Kiwi"
+        }
+      ]
+    },
+    {
+      "id": "bench",
+      "name": "Bench",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "bench.main",
+          "name": "Bench"
+        }
+      ]
+    },
+    {
+      "id": "luis-and-pearl",
+      "name": "Luis and Pearl",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "luis-and-pearl.main",
+          "name": "Luis and Pearl"
+        }
+      ]
+    },
+    {
+      "id": "juicy-cologne",
+      "name": "Juicy Cologne",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "juicy-cologne.red-50ml",
+          "name": "Red 50ml"
+        },
+        {
+          "id": "juicy-cologne.blue-50ml",
+          "name": "Blue 50ml"
+        },
+        {
+          "id": "juicy-cologne.pink-50ml",
+          "name": "Pink 50ml"
+        }
+      ]
+    },
+    {
+      "id": "johnson-s",
+      "name": "Johnson's",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "johnson-s.baby-oil-50ml-regular",
+          "name": "Baby Oil 50ml Regular"
+        }
+      ]
+    },
+    {
+      "id": "babyflo",
+      "name": "Babyflo",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "babyflo.baby-oil-50ml-regular",
+          "name": "Baby Oil 50ml Regular"
+        }
+      ]
+    },
+    {
+      "id": "silka",
+      "name": "Silka",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "silka.papaya-orange",
+          "name": "Papaya Orange"
+        },
+        {
+          "id": "silka.papaya-green",
+          "name": "Papaya Green"
+        }
+      ]
+    },
+    {
+      "id": "charmee",
+      "name": "Charmee",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "charmee.napkin-pink-8s",
+          "name": "Napkin Pink 8s"
+        },
+        {
+          "id": "charmee.napkin-yellow",
+          "name": "Napkin Yellow"
+        }
+      ]
+    },
+    {
+      "id": "cream-silk",
+      "name": "Cream Silk",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "cream-silk.green",
+          "name": "Green"
+        },
+        {
+          "id": "cream-silk.pink",
+          "name": "Pink"
+        },
+        {
+          "id": "cream-silk.blue",
+          "name": "Blue"
+        }
+      ]
+    },
+    {
+      "id": "zonrox",
+      "name": "Zonrox",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "zonrox.original-100ml",
+          "name": "Original 100ml"
+        },
+        {
+          "id": "zonrox.original-250ml",
+          "name": "Original 250ml"
+        },
+        {
+          "id": "zonrox.original-500ml",
+          "name": "Original 500ml"
+        },
+        {
+          "id": "zonrox.original-1l",
+          "name": "Original 1L"
+        },
+        {
+          "id": "zonrox.colorsafe-100ml",
+          "name": "Colorsafe 100ml"
+        },
+        {
+          "id": "zonrox.colorsafe-250ml",
+          "name": "Colorsafe 250ml"
+        },
+        {
+          "id": "zonrox.colorsafe-500ml",
+          "name": "Colorsafe 500ml"
+        },
+        {
+          "id": "zonrox.colorsafe-1l",
+          "name": "Colorsafe 1L"
+        }
+      ]
+    },
+    {
+      "id": "wings",
+      "name": "Wings",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "wings.orange",
+          "name": "Orange"
+        },
+        {
+          "id": "wings.green",
+          "name": "Green"
+        }
+      ]
+    },
+    {
+      "id": "pride",
+      "name": "Pride",
+      "category": "cleaning",
+      "types": [
+        {
+          "id": "pride.main",
+          "name": "Pride"
+        }
+      ]
+    }
+  ]
+}
