@@ -35,6 +35,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
@@ -43,6 +44,14 @@ fun SettingsScreen(vm: MainViewModel, snackbarHost: SnackbarHostState) {
     val cat by vm.catalog.collectAsState()
     val numberKeypad by vm.settings.numberKeypad.collectAsState()
     var header by remember { mutableStateOf(vm.settings.header.value) }
+    val context = LocalContext.current
+    val versionName = remember {
+        try {
+            context.packageManager.getPackageInfo(context.packageName, 0).versionName ?: "?"
+        } catch (e: Exception) {
+            "?"
+        }
+    }
 
     val exportLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.CreateDocument("application/json")
@@ -134,6 +143,13 @@ fun SettingsScreen(vm: MainViewModel, snackbarHost: SnackbarHostState) {
                 onClick = { importLauncher.launch(arrayOf("*/*")) },
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Import catalog (JSON)") }
+
+            HorizontalDivider()
+
+            Text(
+                text = "Version $versionName",
+                style = MaterialTheme.typography.bodySmall
+            )
         }
     }
 }
