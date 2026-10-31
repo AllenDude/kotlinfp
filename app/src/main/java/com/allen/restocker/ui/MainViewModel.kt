@@ -335,16 +335,31 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
-    fun finishOrder() {
+    /** Called right after the list is sent: keeps a copy in history (no duplicates of the same text). */
+    fun saveSent() {
         write {
             val cs = catalog.value
-            val built = OrderText.build(cs.header, cs.items, cs.types, cs.flags, repo.currentLines())
-            if (built.lineCount == 0) {
-                snack("Nothing to save yet")
-            } else {
-                repo.finishDraft(built.text, built.lineCount)
-                edits.clear()
+            val lines = repo.currentLines()
+            val built = OrderText.build(cs.header, cs.items, cs.types, cs.flags, lines)
+            if (built.lineCount > 0 && repo.saveToHistory(built.text, built.lineCount, lines)) {
                 snack("Saved to history")
+            }
+        }
+    }
+
+    /** "Done": makes sure the list is in history, then empties it for the next order. */
+    fun startNewList() {
+        write {
+            val cs = catalog.value
+            val lines = repo.currentLines()
+            val built = OrderText.build(cs.header, cs.items, cs.types, cs.flags, lines)
+            if (built.lineCount == 0) {
+                snack("The list is already empty")
+            } else {
+                repo.saveToHistory(built.text, built.lineCount, lines)
+                val previous = repo.replaceDraft(emptyList())
+                edits.clear()
+                snack("Saved to history. New list started", "Undo") { undo(previous) }
             }
         }
     }

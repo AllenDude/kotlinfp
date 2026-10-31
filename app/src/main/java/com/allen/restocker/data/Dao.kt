@@ -69,6 +69,9 @@ interface RestockerDao {
     @Query("SELECT * FROM orders WHERE sentAt IS NOT NULL ORDER BY sentAt DESC")
     fun observeHistory(): Flow<List<OrderEntity>>
 
+    @Query("SELECT * FROM orders WHERE sentAt IS NOT NULL ORDER BY sentAt DESC LIMIT 1")
+    suspend fun getLatestSent(): OrderEntity?
+
     @Insert
     suspend fun insertOrder(order: OrderEntity): Long
 

@@ -8,6 +8,8 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.allen.restocker.ui.EditItemScreen
@@ -24,8 +26,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            RestockerTheme {
-                App()
+            val vm: MainViewModel = viewModel()
+            val textScale by vm.settings.textScale.collectAsState()
+            RestockerTheme(textScale = textScale) {
+                App(vm)
             }
         }
     }

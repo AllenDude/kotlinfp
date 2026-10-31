@@ -15,6 +15,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -43,6 +44,7 @@ import androidx.compose.ui.unit.dp
 fun SettingsScreen(vm: MainViewModel, snackbarHost: SnackbarHostState) {
     val cat by vm.catalog.collectAsState()
     val numberKeypad by vm.settings.numberKeypad.collectAsState()
+    val textScale by vm.settings.textScale.collectAsState()
     var header by remember { mutableStateOf(vm.settings.header.value) }
     val context = LocalContext.current
     val versionName = remember {
@@ -82,6 +84,23 @@ fun SettingsScreen(vm: MainViewModel, snackbarHost: SnackbarHostState) {
                 .padding(14.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp)
         ) {
+            Text("Text size", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                listOf(1.0f to "Normal", 1.2f to "Large", 1.4f to "Extra large").forEach { (scale, label) ->
+                    FilterChip(
+                        selected = textScale == scale,
+                        onClick = { vm.settings.setTextScale(scale) },
+                        label = { Text(label) }
+                    )
+                }
+            }
+            Text(
+                "This is on top of your phone's own font size setting.",
+                style = MaterialTheme.typography.bodySmall
+            )
+
+            HorizontalDivider()
+
             Text("List title", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
             OutlinedTextField(
                 value = header,

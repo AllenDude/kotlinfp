@@ -15,6 +15,14 @@ class SettingsStore(context: Context) {
     private val _numberKeypad = MutableStateFlow(prefs.getBoolean("numberKeypad", true))
     val numberKeypad: StateFlow<Boolean> = _numberKeypad
 
+    private val _textScale = MutableStateFlow(prefs.getFloat("textScale", 1.2f))
+    val textScale: StateFlow<Float> = _textScale
+
+    fun setTextScale(value: Float) {
+        _textScale.value = value
+        prefs.edit().putFloat("textScale", value).apply()
+    }
+
     fun setHeader(value: String) {
         _header.value = value
         prefs.edit().putString("header", value).apply()

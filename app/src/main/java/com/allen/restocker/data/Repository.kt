@@ -201,14 +201,26 @@ class Repository(private val context: Context, private val db: AppDatabase) {
 
     // ---------- history ----------
 
-    suspend fun finishDraft(text: String, lineCount: Int) = db.withTransaction {
-        val draft = dao.getDraft()
-        if (draft != null) {
-            val now = System.currentTimeMillis()
-            dao.updateOrder(draft.copy(sentAt = now, text = text, lineCount = lineCount))
-            dao.insertOrder(OrderEntity(createdAt = now))
+    /**
+     * Saves a copy of the current list to history. The draft itself is left alone.
+     * Returns false (and adds nothing) if the newest history entry has exactly the same text.
+     */
+    suspend fun saveToHistory(text: String, lineCount: Int, lines: List<LineEntity>): Boolean =
+        db.withTransaction {
+            val latest = dao.getLatestSent()
+            if (latest != null && latest.text == text) {
+                false
+            } else {
+                val now = System.currentTimeMillis()
+                val id = dao.insertOrder(
+                    OrderEntity(createdAt = now, sentAt = now, text = text, lineCount = lineCount)
+                )
+                dao.insertLines(
+                    lines.filter { it.qty.isNotBlank() }.map { it.copy(id = 0, orderId = id) }
+                )
+                true
+            }
         }
-    }
 
     suspend fun linesOfOrder(orderId: Long): List<LineEntity> = dao.getLines(orderId)
 

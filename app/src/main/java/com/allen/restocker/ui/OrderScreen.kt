@@ -4,19 +4,24 @@ package com.allen.restocker.ui
 
 import android.content.Context
 import android.content.Intent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.border
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
@@ -38,6 +43,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -54,9 +60,6 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SegmentedButton
-import androidx.compose.material3.SegmentedButtonDefaults
-import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
@@ -77,10 +80,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.allen.restocker.data.FlagEntity
@@ -126,7 +131,15 @@ fun OrderScreen(vm: MainViewModel, snackbarHost: SnackbarHostState) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(ui.header, fontWeight = FontWeight.Bold) },
+                title = {
+                    Text(
+                        text = ui.header,
+                        style = MaterialTheme.typography.titleLarge.copy(fontSize = 22.sp),
+                        fontWeight = FontWeight.Bold,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                },
                 actions = {
                     IconButton(onClick = { menuOpen = true }) {
                         Icon(Icons.Default.MoreVert, contentDescription = "Menu")
@@ -179,13 +192,20 @@ fun OrderScreen(vm: MainViewModel, snackbarHost: SnackbarHostState) {
                         style = MaterialTheme.typography.titleMedium,
                         modifier = Modifier.weight(1f)
                     )
-                    OutlinedButton(onClick = { showPreview = true }) { Text("Preview") }
+                    OutlinedButton(
+                        onClick = { showPreview = true },
+                        modifier = Modifier.height(52.dp),
+                        border = BorderStroke(2.dp, MaterialTheme.colorScheme.outline),
+                        colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.onSurface)
+                    ) { Text("Preview") }
                     Button(
+                        modifier = Modifier.height(52.dp),
                         onClick = {
                             if (ui.text.isEmpty()) {
                                 vm.snacks.tryEmit(SnackEvent("List is empty"))
                             } else {
                                 shareText(context, ui.text)
+                                vm.saveSent()
                             }
                         }
                     ) {
@@ -258,10 +278,11 @@ fun OrderScreen(vm: MainViewModel, snackbarHost: SnackbarHostState) {
                         Text("No items match", style = MaterialTheme.typography.titleMedium)
                     }
                 } else {
+                  Box(Modifier.fillMaxSize()) {
                     LazyColumn(
                         state = listState,
                         modifier = Modifier.fillMaxSize(),
-                        contentPadding = PaddingValues(start = 12.dp, end = 34.dp, top = 4.dp, bottom = 16.dp),
+                        contentPadding = PaddingValues(start = 12.dp, end = 44.dp, top = 4.dp, bottom = 16.dp),
                         verticalArrangement = Arrangement.spacedBy(10.dp)
                     ) {
                         ui.groups.forEach { (letter, list) ->
@@ -278,20 +299,18 @@ fun OrderScreen(vm: MainViewModel, snackbarHost: SnackbarHostState) {
                             }
                         }
                     }
+                    FastScroller(
+                        letters = letterIndex.keys.toList(),
+                        onSelect = { letter ->
+                            val index = letterIndex[letter] ?: 0
+                            scope.launch { listState.scrollToItem(index) }
+                        },
+                        modifier = Modifier
+                            .align(Alignment.CenterEnd)
+                            .padding(end = 4.dp, top = 4.dp, bottom = 4.dp)
+                    )
+                  }
                 }
-            }
-
-            if (ui.groups.isNotEmpty()) {
-                FastScroller(
-                    letters = letterIndex.keys.toList(),
-                    onSelect = { letter ->
-                        val index = letterIndex[letter] ?: 0
-                        scope.launch { listState.scrollToItem(index) }
-                    },
-                    modifier = Modifier
-                        .align(Alignment.CenterEnd)
-                        .padding(end = 2.dp)
-                )
             }
         }
     }
@@ -316,14 +335,18 @@ fun OrderScreen(vm: MainViewModel, snackbarHost: SnackbarHostState) {
                             .verticalScroll(rememberScrollState())
                     ) {
                         SelectionContainer {
-                            Text(ui.text, fontSize = 18.sp)
+                            Text(ui.text, fontSize = 20.sp)
                         }
                     }
                 }
 
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     OutlinedButton(
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(52.dp),
+                        border = BorderStroke(2.dp, MaterialTheme.colorScheme.outline),
+                        colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.onSurface),
                         onClick = {
                             if (ui.text.isNotEmpty()) {
                                 clipboard.setText(AnnotatedString(ui.text))
@@ -332,17 +355,28 @@ fun OrderScreen(vm: MainViewModel, snackbarHost: SnackbarHostState) {
                         }
                     ) { Text("Copy") }
                     Button(
-                        modifier = Modifier.weight(1f),
-                        onClick = { if (ui.text.isNotEmpty()) shareText(context, ui.text) }
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(52.dp),
+                        onClick = {
+                            if (ui.text.isNotEmpty()) {
+                                shareText(context, ui.text)
+                                vm.saveSent()
+                            }
+                        }
                     ) { Text("Send") }
                 }
                 OutlinedButton(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(52.dp),
+                    border = BorderStroke(2.dp, MaterialTheme.colorScheme.outline),
+                    colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.onSurface),
                     onClick = {
                         showPreview = false
-                        vm.finishOrder()
+                        vm.startNewList()
                     }
-                ) { Text("Finish and save to history") }
+                ) { Text("Done, start a new list") }
             }
         }
     }
@@ -400,7 +434,8 @@ private fun ItemCard(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
+        border = BorderStroke(1.5.dp, MaterialTheme.colorScheme.outlineVariant)
     ) {
         Column(Modifier.padding(14.dp)) {
             Text(
@@ -444,6 +479,7 @@ private fun VariantRow(
             .fillMaxWidth()
             .padding(bottom = 10.dp)
             .background(MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(12.dp))
+            .border(1.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(12.dp))
             .padding(10.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
@@ -474,16 +510,16 @@ private fun VariantRow(
         ) {
             FilledTonalButton(
                 onClick = { vm.step(itemId, row, -1) },
-                modifier = Modifier.size(52.dp),
+                modifier = Modifier.size(60.dp),
                 contentPadding = PaddingValues(0.dp)
-            ) { Text("−", fontSize = 26.sp) }
+            ) { Text("−", fontSize = 32.sp, fontWeight = FontWeight.Bold) }
 
             OutlinedTextField(
                 value = vm.qtyOf(row),
                 onValueChange = { vm.setQty(itemId, row, it) },
                 modifier = Modifier.weight(1f),
                 singleLine = true,
-                textStyle = MaterialTheme.typography.titleLarge,
+                textStyle = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
                 placeholder = { Text("Qty") },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = if (numberKeypad) KeyboardType.Number else KeyboardType.Text
@@ -492,9 +528,9 @@ private fun VariantRow(
 
             FilledTonalButton(
                 onClick = { vm.step(itemId, row, 1) },
-                modifier = Modifier.size(52.dp),
+                modifier = Modifier.size(60.dp),
                 contentPadding = PaddingValues(0.dp)
-            ) { Text("+", fontSize = 26.sp) }
+            ) { Text("+", fontSize = 32.sp, fontWeight = FontWeight.Bold) }
         }
 
         FlagSelector(
@@ -508,20 +544,46 @@ private fun VariantRow(
 @Composable
 private fun FlagSelector(flags: List<FlagEntity>, selected: String, onSelect: (String) -> Unit) {
     val options = listOf("" to "None") + flags.map { it.id to it.label }
-    SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
-        options.forEachIndexed { index, (id, label) ->
-            SegmentedButton(
-                selected = selected == id,
-                onClick = { onSelect(id) },
-                shape = SegmentedButtonDefaults.itemShape(index = index, count = options.size),
-                icon = {},
-                label = { Text(label, maxLines = 1, fontSize = 12.sp) }
-            )
+    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        options.chunked(2).forEach { pair ->
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                pair.forEach { (id, label) ->
+                    if (selected == id) {
+                        Button(
+                            onClick = { onSelect(id) },
+                            modifier = Modifier
+                                .weight(1f)
+                                .height(48.dp),
+                            contentPadding = PaddingValues(horizontal = 4.dp)
+                        ) {
+                            Text("\u2713 $label", maxLines = 1, fontWeight = FontWeight.Bold)
+                        }
+                    } else {
+                        OutlinedButton(
+                            onClick = { onSelect(id) },
+                            modifier = Modifier
+                                .weight(1f)
+                                .height(48.dp),
+                            border = BorderStroke(2.dp, MaterialTheme.colorScheme.outline),
+                            colors = ButtonDefaults.outlinedButtonColors(
+                                contentColor = MaterialTheme.colorScheme.onSurface
+                            ),
+                            contentPadding = PaddingValues(horizontal = 4.dp)
+                        ) {
+                            Text(label, maxLines = 1)
+                        }
+                    }
+                }
+                if (pair.size == 1) Spacer(Modifier.weight(1f))
+            }
         }
     }
 }
 
-/** A-Z strip on the right edge. Tap a letter or drag along it. */
+/** A-Z strip on the right edge. Tap a letter or drag along it. Sized to always fit its space. */
 @Composable
 private fun FastScroller(
     letters: List<String>,
@@ -536,33 +598,38 @@ private fun FastScroller(
         onSelect(letters[index])
     }
 
-    Column(
-        modifier = modifier
-            .background(
-                MaterialTheme.colorScheme.surface.copy(alpha = 0.9f),
-                RoundedCornerShape(12.dp)
-            )
-            .onSizeChanged { heightPx = it.height.coerceAtLeast(1) }
-            .pointerInput(letters) {
-                detectTapGestures { offset -> pick(offset.y) }
-            }
-            .pointerInput(letters) {
-                detectVerticalDragGestures(
-                    onDragStart = { offset -> pick(offset.y) },
-                    onVerticalDrag = { change, _ -> pick(change.position.y) }
+    BoxWithConstraints(modifier = modifier.fillMaxHeight()) {
+        val perLetter = maxHeight / letters.size
+        val letterDp = minOf(17.dp, perLetter * 0.8f)
+        val letterSp = with(LocalDensity.current) { letterDp.toSp() }
+
+        Column(
+            modifier = Modifier
+                .fillMaxHeight()
+                .width(34.dp)
+                .background(MaterialTheme.colorScheme.surface, RoundedCornerShape(12.dp))
+                .border(1.5.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(12.dp))
+                .onSizeChanged { heightPx = it.height.coerceAtLeast(1) }
+                .pointerInput(letters) {
+                    detectTapGestures { offset -> pick(offset.y) }
+                }
+                .pointerInput(letters) {
+                    detectVerticalDragGestures(
+                        onDragStart = { offset -> pick(offset.y) },
+                        onVerticalDrag = { change, _ -> pick(change.position.y) }
+                    )
+                },
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceAround
+        ) {
+            letters.forEach { letter ->
+                Text(
+                    text = letter,
+                    fontSize = letterSp,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.primary
                 )
             }
-            .padding(horizontal = 6.dp, vertical = 4.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        letters.forEach { letter ->
-            Text(
-                text = letter,
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.padding(vertical = 1.dp)
-            )
         }
     }
 }

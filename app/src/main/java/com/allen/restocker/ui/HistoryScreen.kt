@@ -74,7 +74,7 @@ fun HistoryScreen(vm: MainViewModel, snackbarHost: SnackbarHostState) {
                     .fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                Text("No saved orders yet.\nUse \"Finish and save to history\" in the preview.")
+                Text("No saved orders yet.\nLists you send are saved here automatically.")
             }
         } else {
             LazyColumn(
